@@ -30,4 +30,5 @@ at the end of the run, open terminal / command window
 cd to the source directory
 tensorboard --logdir logs/fit
 read more on tensorboard: https://www.tensorflow.org/tensorboard/get_started
+Chrome: localhost:6006
 '''

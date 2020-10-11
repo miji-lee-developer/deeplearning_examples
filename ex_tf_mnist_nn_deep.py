@@ -1,5 +1,7 @@
 import numpy as np
 import random
+import os
+import datetime
 import tensorflow as tf
 
 random.seed(777)
@@ -27,7 +29,10 @@ tf.model.add(tf.keras.layers.Dense(units=nb_classes, kernel_initializer='glorot_
 tf.model.compile(loss='categorical_crossentropy', optimizer=tf.keras.optimizers.Adam(lr=learning_rate), metrics=['accuracy'])
 tf.model.summary()
 
-history = tf.model.fit(x_train, y_train, batch_size=batch_size, epochs=training_epochs)
+log_dir = os.path.join(".", "logs", "fit_mnist", datetime.datetime.now().strftime("%Y%m%d-%H%M%S"))
+tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
+
+history = tf.model.fit(x_train, y_train, batch_size=batch_size, epochs=training_epochs, callbacks=[tensorboard_callback])
 
 y_predicted = tf.model.predict(x_test)
 for x in range(0, 10):

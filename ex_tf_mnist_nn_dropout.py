@@ -7,7 +7,7 @@ learning_rate = 0.001
 batch_size = 100
 training_epochs=15
 nb_classes = 10
-drop_rate = 0.3
+drop_rate = 0.1
 (x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
 print(x_train.shape)
 
@@ -20,6 +20,14 @@ y_test = tf.keras.utils.to_categorical(y_test, nb_classes)
 tf.model = tf.keras.Sequential()
 
 tf.model.add(tf.keras.layers.Dense(input_dim=784, units=512, kernel_initializer='glorot_normal', activation='relu'))
+tf.model.add(tf.keras.layers.Dropout(drop_rate))
+tf.model.add(tf.keras.layers.Dense(units=512, kernel_initializer='glorot_normal', activation='relu'))
+tf.model.add(tf.keras.layers.Dropout(drop_rate))
+tf.model.add(tf.keras.layers.Dense(units=512, kernel_initializer='glorot_normal', activation='relu'))
+tf.model.add(tf.keras.layers.Dropout(drop_rate))
+tf.model.add(tf.keras.layers.Dense(units=512, kernel_initializer='glorot_normal', activation='relu'))
+tf.model.add(tf.keras.layers.Dropout(drop_rate))
+tf.model.add(tf.keras.layers.Dense(units=512, kernel_initializer='glorot_normal', activation='relu'))
 tf.model.add(tf.keras.layers.Dropout(drop_rate))
 tf.model.add(tf.keras.layers.Dense(units=512, kernel_initializer='glorot_normal', activation='relu'))
 tf.model.add(tf.keras.layers.Dropout(drop_rate))
