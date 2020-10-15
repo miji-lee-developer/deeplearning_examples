@@ -43,7 +43,7 @@ tf.model.summary()
 
 predictions = tf.model.predict(x_one_hot)
 for i, prediction in enumerate(predictions):
-    print(prediction)
+    print('prediction: \n', prediction)
     # print char using argmax, dict
     result_str = [idx2char[c] for c in np.argmax(prediction, axis=1)]
     print('\tPrediction str: ', ''.join(result_str))
