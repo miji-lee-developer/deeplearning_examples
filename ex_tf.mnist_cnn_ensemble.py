@@ -94,4 +94,5 @@ for _ in range(7):
 # ensemble_accuracy = tf.reduce_mean(tf.cast(ensemble_correct_prediction, tf.float32), 0)
 # print('Ensemble accuracy: ', ensemble_accuracy)
 
+print('losses: ', losses, ', accuracies: ', accuracies)
 print('mean_loss: ', np.mean(losses), ', mean_accuracy: ', np.mean(accuracies))
