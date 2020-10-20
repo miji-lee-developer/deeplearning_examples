@@ -115,4 +115,14 @@ for j in range(nn):
                                         , verbose=0, steps_per_epoch=(len(x_train)//64)
                                         , validation_steps=(len(x_val)//64), callbacks=[annealer])
     print("CNN {0:d}: Epochs={1:d}, Train accuracy={2:.5f}, Validation accuracy={3:.5f}"
-          .format(j+1, epochs, max(history[j].history['acc']), max(history[j].history['val_acc'])))
+          .format(j+1, epochs, max(history[j].history['accuracy']), max(history[j].history['val_accuracy'])))
+
+# Ensemble Predictions and submitting the result
+results = np.zeros((x_test.shape[0], 10))
+for j in range(nn):
+    results = results + model[j].predict(x_test)
+
+results = np.argmax(results, axis=1)
+results = pd.Series(results, name="Label")
+submission = pd.concat([pd.Series(range(1, 28001), name="ImageId"), results], axis=1)
+submission.to_csv("ENSEMBLE.csv", index=False)
