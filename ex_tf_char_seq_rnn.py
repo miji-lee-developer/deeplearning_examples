@@ -2,7 +2,10 @@
 import tensorflow as tf
 import numpy as np
 
-sample = "if you want you"
+# sample = "if you want you"
+sample = ("if you want to build a ship, don't drum up people together to \n"
+          "collect wood and don't assign them tasks and work, but rather \n"
+          "teach them to long for the endless immensity of the sea.")
 idx2char = list(set(sample)) # index -> char
 char2idx = {c: i for i, c in enumerate(idx2char)} # char -> index
 
@@ -35,7 +38,7 @@ tf.model.add(tf.keras.layers.TimeDistributed(tf.keras.layers.Dense(units=num_cla
 tf.model.summary()
 tf.model.compile(loss='categorical_crossentropy', optimizer=tf.keras.optimizers.Adam(lr=learning_rate), metrics=['accuracy'])
 # tf.model.fit(x_one_hot_eager, y_one_hot_eager, steps_per_epoch=5000)
-tf.model.fit(x_one_hot_numpy, y_one_hot_eager, steps_per_epoch=5000)
+tf.model.fit(x_one_hot_numpy, y_one_hot_eager, epochs=50, steps_per_epoch=(len(x_one_hot_numpy)))
 
 # predictions = tf.model.predict(x_one_hot_eager, steps=1)
 predictions = tf.model.predict(x_one_hot_numpy, steps=1)
@@ -43,4 +46,4 @@ predictions = tf.model.predict(x_one_hot_numpy, steps=1)
 for i, prediction in enumerate(predictions):
     # print char using argmax, dict
     result_str = [idx2char[c] for c in np.argmax(prediction, axis=1)]
-    print("\tPrediction str: ", ''.join(result_str))
+    print("\tPrediction str: \n", ''.join(result_str))
