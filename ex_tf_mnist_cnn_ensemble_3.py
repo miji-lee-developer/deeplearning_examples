@@ -17,16 +17,16 @@ def fit_model(x_train, y_train):
     # L1
     model.add(tf.keras.layers.Conv2D(filters=32, kernel_size=(3, 3), input_shape=(28, 28, 1), activation='relu'))
     model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2)))
-    # model.add(tf.keras.layers.Dropout(drop_rate))
+    model.add(tf.keras.layers.Dropout(drop_rate))
 
     # L2
     model.add(tf.keras.layers.Conv2D(filters=64, kernel_size=(3, 3), activation='relu'))
     model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2)))
-    # model.add(tf.keras.layers.Dropout(drop_rate))
+    model.add(tf.keras.layers.Dropout(drop_rate))
 
     # L3
-    model.add(tf.keras.layers.Conv2D(filters=128, kernel_size=(3, 3), activation='relu'))
-    model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2)))
+    # model.add(tf.keras.layers.Conv2D(filters=128, kernel_size=(3, 3), activation='relu'))
+    # model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2)))
     # model.add(tf.keras.layers.Dropout(drop_rate))
 
     # L4 fully connected
