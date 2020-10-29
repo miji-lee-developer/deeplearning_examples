@@ -7,10 +7,11 @@ data = pd.read_csv("./input/Titanic/train.csv", index_col="PassengerId")
 print(data.shape)
 data.head()
 
-# print(data[["Embarked"]].head())
-# embarked_one_hot = tf.keras.utils.to_categorical(data.Embarked, num_classes=3)
-# print(embarked_one_hot)
+d = dict([e[:: -1] for e in enumerate(data.Embarked.unique())])
+print(d)
 
-t = tf.keras.preprocessing.text.Tokenizer()
-t.fit_on_sequences(data.Embarked)
-print(t.word_index)
+data["Embarked_num"] = data.Embarked.map(d)
+print(data[["Embarked", "Embarked_num"]])
+
+one_hot = tf.keras.utils.to_categorical(data.Embarked_num, num_classes=len(d.items()))
+print(one_hot)
