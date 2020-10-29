@@ -8,11 +8,9 @@ print(data.shape)
 data.head()
 
 # print(data[["Embarked"]].head())
-# embarked_one_hot = tf.keras.utils.to_categorical(data["Embarked"], num_classes=3)
+# embarked_one_hot = tf.keras.utils.to_categorical(data.Embarked, num_classes=3)
+# print(embarked_one_hot)
 
-d = data["Embarked"]
-print(type(d))
-
-# t = tf.keras.preprocessing.text.Tokenizer()
-# t.fit_on_sequences(data["Embarked"])
-# print(t.word_index)
+t = tf.keras.preprocessing.text.Tokenizer()
+t.fit_on_sequences(data.Embarked)
+print(t.word_index)
