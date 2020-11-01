@@ -22,4 +22,5 @@ data["Embarked_C"] = df[1]
 data["Embarked_Q"] = df[2]
 data["Embarked_Null"] = df[3]
 
-print(data[["Embarked","Embarked_C","Embarked_S","Embarked_Q","Embarked_Null"]].head())
+print(df[0])
+# print(data[["Embarked","Embarked_C","Embarked_S","Embarked_Q","Embarked_Null"]].head())
